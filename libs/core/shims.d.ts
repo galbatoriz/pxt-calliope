@@ -701,22 +701,6 @@ declare namespace led {
     //% parts="ledmatrix" shim=led::screenshot
     function screenshot(): Image;
 }
-
-
-
-    //% color=#B4009E weight=99 icon="\uf192"
-declare namespace input {
-
-    /**
-     * Reads the loudness through the microphone from 0 (silent) to 255 (loud)
-     */
-    //% help=input/sound-level
-    //% blockId=soundLevel block="sound level"
-    //% parts="microphone"
-    //% weight=34 blockGap=8
-    //% group="Sound" shim=input::soundLevel
-    function soundLevel(): int32;
-}
 declare namespace music {
 
     /**
@@ -780,44 +764,6 @@ declare namespace pins {
     //% blockId=device_set_analog_period block="analog set period|pin %pin|to (µs)%micros"
     //% pin.shadow=analog_pin_shadow shim=pins::analogSetPeriod
     function analogSetPeriod(name: int32, micros: int32): void;
-
-    /**
-     * Configure the pin as a digital input and generate an event when the pin is pulsed either high or low.
-     * @param name digital pin to register to, eg: DigitalPin.P0
-     * @param pulse the value of the pulse, eg: PulseValue.High
-     */
-    //% help=pins/on-pulsed weight=22 blockGap=16 advanced=true
-    //% blockId=pins_on_pulsed block="on|pin %pin|pulsed %pulse"
-    //% pin.fieldEditor="gridpicker" pin.fieldOptions.columns=4
-    //% pin.fieldOptions.tooltips="false" pin.fieldOptions.width="250"
-    //% group="Pulse"
-    //% weight=25
-    //% blockGap=8 shim=pins::onPulsed
-    function onPulsed(name: DigitalPin, pulse: PulseValue, body: () => void): void;
-
-    /**
-     * Get the duration of the last pulse in microseconds. This function should be called from a ``onPulsed`` handler.
-     */
-    //% help=pins/pulse-duration advanced=true
-    //% blockId=pins_pulse_duration block="pulse duration (µs)"
-    //% weight=21 blockGap=8
-    //% group="Pulse" shim=pins::pulseDuration
-    function pulseDuration(): int32;
-
-    /**
-     * Return the duration of a pulse at a pin in microseconds.
-     * @param name the pin which measures the pulse, eg: DigitalPin.P0
-     * @param value the value of the pulse, eg: PulseValue.High
-     * @param maximum duration in microseconds
-     */
-    //% blockId="pins_pulse_in" block="pulse in (µs)|pin %name|pulsed %value"
-    //% weight=20 advanced=true
-    //% help=pins/pulse-in
-    //% name.shadow=digital_pin_shadow
-    //% group="Pulse"
-    //% weight=23
-    //% blockGap=8 maxDuration.defl=2000000 shim=pins::pulseIn
-    function pulseIn(name: int32, value: PulseValue, maxDuration?: int32): int32;
 
     /**
      * Write a value to the servo, controlling the shaft accordingly. On a standard servo, this will set the angle of the shaft (in degrees), moving the shaft to that orientation. On a continuous rotation servo, this will set the speed of the servo (with ``0`` being full-speed in one direction, ``180`` being full speed in the other, and a value near ``90`` being no movement).
@@ -947,14 +893,14 @@ declare namespace pins {
      * Read `size` bytes from a 7-bit I2C `address`.
      */
     //%
-    //% group="i2c" repeat.defl=0 shim=pins::i2cReadBuffer
+    //% group="I²C" repeat.defl=0 shim=pins::i2cReadBuffer
     function i2cReadBuffer(address: int32, size: int32, repeat?: boolean): Buffer;
 
     /**
      * Write bytes to a 7-bit I2C `address`.
      */
     //%
-    //% group="i2c" repeat.defl=0 shim=pins::i2cWriteBuffer
+    //% group="I²C" repeat.defl=0 shim=pins::i2cWriteBuffer
     function i2cWriteBuffer(address: int32, buf: Buffer, repeat?: boolean): int32;
 
     /**
@@ -1007,6 +953,44 @@ declare namespace pins {
     //% blockGap=8
     //% weight=51 shim=pins::spiPins
     function spiPins(mosi: int32, miso: int32, sck: int32): void;
+
+    /**
+     * Configure the pin as a digital input and generate an event when the pin is pulsed either high or low.
+     * @param name digital pin to register to, eg: DigitalPin.P0
+     * @param pulse the value of the pulse, eg: PulseValue.High
+     */
+    //% help=pins/on-pulsed weight=22 blockGap=16 advanced=true
+    //% blockId=pins_on_pulsed block="on|pin %pin|pulsed %pulse"
+    //% pin.fieldEditor="gridpicker" pin.fieldOptions.columns=4
+    //% pin.fieldOptions.tooltips="false" pin.fieldOptions.width="250"
+    //% group="Pulse"
+    //% weight=25
+    //% blockGap=8 shim=pins::onPulsed
+    function onPulsed(name: DigitalPin, pulse: PulseValue, body: () => void): void;
+
+    /**
+     * Get the duration of the last pulse in microseconds. This function should be called from a ``onPulsed`` handler.
+     */
+    //% help=pins/pulse-duration advanced=true
+    //% blockId=pins_pulse_duration block="pulse duration (µs)"
+    //% weight=21 blockGap=8
+    //% group="Pulse" shim=pins::pulseDuration
+    function pulseDuration(): int32;
+
+    /**
+     * Return the duration of a pulse at a pin in microseconds.
+     * @param name the pin which measures the pulse, eg: DigitalPin.P0
+     * @param value the value of the pulse, eg: PulseValue.High
+     * @param maximum duration in microseconds
+     */
+    //% blockId="pins_pulse_in" block="pulse in (µs)|pin %name|pulsed %value"
+    //% weight=20 advanced=true
+    //% help=pins/pulse-in
+    //% name.shadow=digital_pin_shadow
+    //% group="Pulse"
+    //% weight=23
+    //% blockGap=8 maxDuration.defl=2000000 shim=pins::pulseIn
+    function pulseIn(name: int32, value: PulseValue, maxDuration?: int32): int32;
 
     /**
      * Mounts a push button on the given pin
@@ -1070,7 +1054,7 @@ declare namespace serial {
      * Send a piece of text through the serial connection.
      */
     //% help=serial/write-string
-    //% weight=87 blockGap=8
+    //% weight=88 blockGap=8
     //% blockId=serial_writestring block="serial|write string %text"
     //% text.shadowOptions.toString=true shim=serial::writeString
     function writeString(text: string): void;
@@ -1083,7 +1067,7 @@ declare namespace serial {
     function writeBuffer(buffer: Buffer): void;
 
     /**
-     * Read multiple characters from the receive buffer. 
+     * Read multiple characters from the receive buffer.
      * If length is positive, pauses until enough characters are present.
      * @param length default buffer length
      */

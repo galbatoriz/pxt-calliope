@@ -435,8 +435,6 @@ declare namespace control {
     }
 declare namespace led {
 }
-declare namespace input {
-}
 
 
     declare const enum DigitalPin {
@@ -535,8 +533,14 @@ declare namespace input {
     //% block="C19 (A0 SCL)" blockHidden=true
     A0_SCL = 119,  // MICROBIT_ID_IO_A0_SCL
     //% blockIdentity="pins._digitalPin"
+    //% blockHidden=true
+    P19 = 119,  // MICROBIT_ID_IO_A0_SCL
+    //% blockIdentity="pins._digitalPin"
     //% block="C20 (A0 SDA)" blockHidden=true
     A0_SDA = 120,  // MICROBIT_ID_IO_A0_SDA
+    //% blockIdentity="pins._digitalPin"
+    //% blockHidden=true
+    P20 = 120,  // MICROBIT_ID_IO_A0_SDA
     //% blockIdentity="pins._digitalPin"
     //% blockHidden=true
     M_MODE = 156,  // MICROBIT_ID_IO_M_MODE
@@ -554,7 +558,6 @@ declare namespace input {
     M1_SPEED = 155,  // MICROBIT_ID_IO_M_B_IN2
     //% blockIdentity="pins._digitalPin"
     RGB = 151,  // MICROBIT_ID_IO_RGB
-
     }
 
 

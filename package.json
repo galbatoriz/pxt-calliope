@@ -1,6 +1,6 @@
 {
     "name": "pxt-calliopemini",
-    "version": "7.1.24",
+    "version": "8.0.4",
     "description": "calliope mini target for Microsoft MakeCode (PXT)",
     "keywords": [
         "JavaScript",
@@ -46,7 +46,8 @@
         "typescript": "4.8.3"
     },
     "dependencies": {
-        "pxt-common-packages": "12.2.2",
-        "pxt-core": "11.3.20"
-    }
+        "pxt-common-packages": "13.0.0",
+        "pxt-core": "12.0.16"
+    },
+    "overrides": {}
 }
